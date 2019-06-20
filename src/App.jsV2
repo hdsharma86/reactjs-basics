@@ -1,0 +1,54 @@
+import React, {useState} from 'react';
+import './App.css';
+import Person from './Person/Person';
+
+const App = (props) => {
+
+  const [personState, setPersonState] = useState({
+    persons: [
+      {name: 'Hardev', age: 32},
+      {name: 'Madhu', age: 27},
+      {name: 'Viren', age: 4}
+    ]
+  });
+
+  const changeStateHandler = (name) => {
+    setPersonState({
+      persons : [
+        {name: 'Hardev1', age: 33},
+        {name, age: 26},
+        {name: 'Viren1', age: 3}
+      ]
+    })
+  }
+
+  const nameChangeHandler = (event) => {
+    setPersonState({
+      persons : [
+        {name: event.target.value, age: 33},
+        {name:"Test", age: 26},
+        {name: 'Viren1', age: 3}
+      ]
+    })
+  }
+
+  const style = {
+      backgroundColor: 'white',
+      border: '1px solid #333',
+      padding: '5px',
+      cursor: 'pointer'
+  };
+
+  return (
+    <div className="App">
+      <p>Hello There!</p>
+      <p><button style={style} onClick={() => changeStateHandler('Name123')}>Click Me</button></p>
+      <Person changed={nameChangeHandler} name={personState.persons[0].name} age={personState.persons[0].age} />
+      <Person click={() => changeStateHandler('Name75757')} name={personState.persons[1].name} age={personState.persons[1].age}>Hobies: Reading, Jogging</Person>
+      <Person name={personState.persons[2].name} age={personState.persons[2].age}>Test</Person>
+    </div>
+  )
+
+}
+
+export default App;
